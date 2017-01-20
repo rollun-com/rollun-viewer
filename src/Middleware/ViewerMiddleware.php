@@ -3,17 +3,28 @@
  * Created by PhpStorm.
  * User: root
  * Date: 18.01.17
- * Time: 14:19
+ * Time: 18:33
  */
 
 namespace rollun\viewer\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use rollun\viewer\Viewer\ViewerInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Stratigility\MiddlewareInterface;
 
-class CronExceptionMiddleware implements MiddlewareInterface
+class ViewerMiddleware implements MiddlewareInterface
 {
+
+    /** @var ViewerInterface */
+    protected $viewer;
+
+
+    public function __construct(ViewerInterface $viewer)
+    {
+        $this->viewer = $viewer;
+    }
 
     /**
      * Process an incoming request and/or response.
@@ -39,12 +50,10 @@ class CronExceptionMiddleware implements MiddlewareInterface
      * @param ResponseInterface $response
      * @param null|callable $out
      * @return null|ResponseInterface
-     * @throws \Exception
      */
     public function __invoke(Request $request, ResponseInterface $response, callable $out = null)
     {
-        throw new \Exception(
-            "If use /api/cron route, you mast usage rollun-com/rollun-callback lib with cronMiddleware!"
-        );
+        /** TODO: add type of return (page or widget) */
+        return new HtmlResponse($this->viewer->getPage());
     }
 }

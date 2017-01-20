@@ -1,6 +1,6 @@
 {
-  "name": "rollun-com/rollun-skeleton",
-  "description": "Skeleton for app or lib",
+  "name": "rollun-com/rollun-viewer",
+  "description": "Viewer lib",
   "minimum-stability": "stable",
   "license": "proprietary",
   "type": "project",
@@ -26,6 +26,7 @@
     "zendframework/zend-db": "2.8.2",
     "zendframework/zend-expressive-twigrenderer": "^1.0",
     "psr/log": "^1.0",
+    "rollun-com/rollun-datastore": "^1.0",
     "rollun-com/rollun-installer": "^1.0",
     "zendframework/zend-http": "^2.5"
   },
@@ -36,12 +37,12 @@
   },
   "autoload": {
     "psr-4": {
-      "rollun\\skeleton\\": "src/"
+      "rollun\\viewer\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "rollun\\test\\skeleton\\": "tests/src"
+      "rollun\\test\\viewer\\": "tests/src"
     }
   },
   "scripts": {
