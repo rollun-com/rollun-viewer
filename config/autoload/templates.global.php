@@ -13,7 +13,6 @@ return [
         'extension' => 'html.twig',
         'paths' => [
             'app' => ['resources/templates/app'],
-            'viewer' => ['resources/templates/viewer'],
             'layout' => ['resources/templates/layout'],
             'error' => ['resources/templates/error'],
         ],
