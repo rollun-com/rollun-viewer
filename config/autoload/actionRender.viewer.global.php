@@ -7,10 +7,8 @@
  */
 
 use rollun\actionrender\Factory\ActionRenderAbstractFactory;
+use rollun\actionrender\Factory\LazyLoadResponseRendererAbstractFactory;
 use rollun\actionrender\Factory\MiddlewarePipeAbstractFactory;
-use rollun\actionrender\Renderer\ResponseRendererAbstractFactory;
-use rollun\datastore\Middleware\RequestDecoder;
-use rollun\datastore\Middleware\ResourceResolver;
 
 return [
     'dependencies' => [
@@ -23,24 +21,23 @@ return [
                 \rollun\actionrender\Renderer\Html\HtmlRendererFactory::class
         ]
     ],
-    ResponseRendererAbstractFactory::KEY_RESPONSE_RENDERER => [
+    LazyLoadResponseRendererAbstractFactory::KEY => [
         'dsDojoHtmlJsonRenderer' => [
-            ResponseRendererAbstractFactory::KEY_ACCEPT_TYPE_PATTERN => [
+            LazyLoadResponseRendererAbstractFactory::KEY_ACCEPT_TYPE_PATTERN => [
                 //pattern => middleware-Service-Name
                 '/application\/json/' => \rollun\actionrender\Renderer\Json\JsonRendererAction::class,
                 '/text\/html/' => 'dsDojoHtmlRenderer'
             ]
         ]
     ],
-    ActionRenderAbstractFactory::KEY_AR_SERVICE => [
+    ActionRenderAbstractFactory::KEY => [
         'api-rest' => [
-            ActionRenderAbstractFactory::KEY_AR_MIDDLEWARE => [
-                ActionRenderAbstractFactory::KEY_ACTION_MIDDLEWARE_SERVICE => 'apiRestAction',
-                ActionRenderAbstractFactory::KEY_RENDER_MIDDLEWARE_SERVICE => 'dsDojoHtmlJsonRenderer'
-            ]
+            ActionRenderAbstractFactory::KEY_ACTION_MIDDLEWARE_SERVICE => 'apiRestAction',
+            ActionRenderAbstractFactory::KEY_RENDER_MIDDLEWARE_SERVICE => 'dsDojoHtmlJsonRenderer'
+
         ]
     ],
-    MiddlewarePipeAbstractFactory::KEY_AMP => [
+    MiddlewarePipeAbstractFactory::KEY => [
         'dsDojoHtmlRenderer' => [
             'middlewares' => [
                 \rollun\actionrender\Renderer\Html\HtmlParamResolver::class,
