@@ -1,4 +1,4 @@
-# zaboy-skeleton
+# rollun-viewer
 
 ---
 ## [Оглавление](https://github.com/rollun-com/rollun-skeleton/blob/master/docs/Contents.md)
