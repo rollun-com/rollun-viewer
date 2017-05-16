@@ -1,29 +1,30 @@
 <?php
 
+use Zend\Expressive\Template\TemplateRendererInterface;
+use Zend\Expressive\Twig\TwigEnvironmentFactory;
+use Zend\Expressive\Twig\TwigRendererFactory;
+use Zend\Expressive\ZendView\HelperPluginManagerFactory;
+use Zend\Expressive\ZendView\ZendViewRendererFactory;
+use Zend\View\HelperPluginManager;
+
 return [
     'dependencies' => [
         'factories' => [
-            Zend\Expressive\Template\TemplateRendererInterface::class =>
-                Zend\Expressive\Twig\TwigRendererFactory::class,
-            'Twig_Environment' => Zend\Expressive\Twig\TwigEnvironmentFactory::class,
+            TemplateRendererInterface::class => ZendViewRendererFactory::class,
+            HelperPluginManager::class => HelperPluginManagerFactory::class,
         ],
     ],
 
-    'templates' => [
-        'extension' => 'html.twig',
-        'paths' => [
-            'app' => ['resources/templates/app'],
-            'layout' => ['resources/templates/layout'],
-            'error' => ['resources/templates/error'],
-        ],
-    ],
+    /*'templates' => [
+        'layout' => 'layout::default',
+    ],*/
 
-    'twig' => [
-        'cache_dir' => 'data/cache/twig',
-        'assets_url' => '/',
-        'assets_version' => null,
-        'extensions' => [
-            // extension service names or instances
-        ],
+    'view_helpers' => [
+        // zend-servicemanager-style configuration for adding view helpers:
+        // - 'aliases'
+        // - 'invokables'
+        // - 'factories'
+        // - 'abstract_factories'
+        // - etc.
     ],
 ];
