@@ -1,0 +1,29 @@
+{% extends '@layout/dojo.html.twig' %}
+
+{% block title %}
+    {{ resourceName }}
+{% endblock %}
+
+{% block content %}
+    <div id="DataStoreViewer"></div>
+{% endblock %}
+
+{% block scriptBody %}
+    {{ parent() }}
+    <script>
+        /*<a>FOR READ DOC - GO TO "https://github.com/avz-cmf/dojo-rql/blob/master/DataStoreVIewer.md"</a>*/
+        require([
+            "dojo/dom",
+            "Rscript/DataStoreViewer/widget/DataStoreView",
+        ], function (dom,
+                     DataStoreViewer) {
+            var dataStoreViewer = new DataStoreViewer({
+                url: "{{ url('api-rest', {'resourceName': resourceName}) }}",
+                gridConfig: {
+                    filterUrl: "{{ url('api-rest', {'resourceName': 'filters'}) }}"
+                }
+            });
+            dataStoreViewer.placeAt(dom.byId('DataStoreViewer')).startup();
+        })
+    </script>
+{% endblock %}
