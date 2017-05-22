@@ -35,3 +35,5 @@ $aggregator = new ConfigAggregator([
 ], $cacheConfig['config_cache_path']);
 
 return $aggregator->getMergedConfig();
+
+
