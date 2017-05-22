@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<?= $this->headTitle('zend-expressive')->setSeparator(' - ')->setAutoEscape(false) ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<?= $this->headMeta(); ?>
+	<?= $this->headLink(); ?>
+	<?php echo $this->inlineScript(); ?>
+</head>
+<body>
+<?php echo $this->content ?>
+</body>
+</html>
