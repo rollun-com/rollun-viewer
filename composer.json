@@ -43,7 +43,7 @@
     "rollun-com/rollun-permission": "^2.0",
     "zendframework/zend-i18n": "^2.7",
     "npm-asset/dojo-rql": "^0.2.0",
-    "npm-asset/rollun-js": "^0.0.3"
+    "npm-asset/rollun-js": "^0.0.4"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7.15",
