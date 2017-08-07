@@ -28,13 +28,13 @@ class CrudAction implements MiddlewareInterface
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         $params = $request->getQueryParams();
-        $params = array_merge($params, [
+        $params = array_merge([
             // можно все передать через параметры урла
             'url' => '/api/datastore/test',
             'title' => 'test table',
             'options' => [
             ]
-        ]);
+        ], $params);
         $request = $request->withAttribute('responseData', $params);
         $request = $request->withAttribute(HtmlParamResolver::KEY_ATTRIBUTE_TEMPLATE_NAME, 'crud-app::crud-page');
         $response = $delegate->process($request);
