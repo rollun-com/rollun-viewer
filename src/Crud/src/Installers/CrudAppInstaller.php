@@ -31,12 +31,11 @@ class CrudAppInstaller extends InstallerAbstract
                 ],
             ],
             ActionRenderAbstractFactory::KEY => [
-                'home-service' => [
+                'crud-service' => [
                     ActionRenderAbstractFactory::KEY_ACTION_MIDDLEWARE_SERVICE => CrudAction::class,
                     ActionRenderAbstractFactory::KEY_RENDER_MIDDLEWARE_SERVICE => 'simpleHtmlJsonRendererLLPipe'
                 ]
             ],
-
         ];
     }
 
@@ -58,7 +57,7 @@ class CrudAppInstaller extends InstallerAbstract
     {
         switch ($lang) {
             case "ru":
-                $description = "Предоставляет базовое тестовое приложение.";
+                $description = "Предоставляет базовое тестовое приложение по использованию таблици.";
                 break;
             default:
                 $description = "Does not exist.";
@@ -71,7 +70,7 @@ class CrudAppInstaller extends InstallerAbstract
         $config = $this->container->get('config');
         return (
             isset($config['dependencies']['invokables'][CrudAction::class]) &&
-            isset($config[ActionRenderAbstractFactory::KEY]['home-service'])
+            isset($config[ActionRenderAbstractFactory::KEY]['crud-service'])
         );
     }
 
