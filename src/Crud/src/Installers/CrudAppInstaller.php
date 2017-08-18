@@ -6,17 +6,16 @@
  * Time: 12:59
  */
 
-namespace rollun\test\Installers;
-
+namespace rollun\Crud\Installers;
 
 use rollun\actionrender\Factory\ActionRenderAbstractFactory;
 use rollun\actionrender\Installers\ActionRenderInstaller;
 use rollun\actionrender\Installers\BasicRenderInstaller;
 use rollun\installer\Command;
 use rollun\installer\Install\InstallerAbstract;
-use rollun\test\Middleware\HelloAction;
+use rollun\Crud\Middleware\CrudAction;
 
-class TestHelloWorldInstaller extends InstallerAbstract
+class CrudAppInstaller extends InstallerAbstract
 {
 
     /**
@@ -28,16 +27,15 @@ class TestHelloWorldInstaller extends InstallerAbstract
         return [
             'dependencies' => [
                 'invokables' => [
-                    HelloAction::class => HelloAction::class
+                    CrudAction::class => CrudAction::class
                 ],
             ],
             ActionRenderAbstractFactory::KEY => [
-                'home-service' => [
-                    ActionRenderAbstractFactory::KEY_ACTION_MIDDLEWARE_SERVICE => HelloAction::class,
+                'crud-service' => [
+                    ActionRenderAbstractFactory::KEY_ACTION_MIDDLEWARE_SERVICE => CrudAction::class,
                     ActionRenderAbstractFactory::KEY_RENDER_MIDDLEWARE_SERVICE => 'simpleHtmlJsonRendererLLPipe'
                 ]
             ],
-
         ];
     }
 
@@ -59,7 +57,7 @@ class TestHelloWorldInstaller extends InstallerAbstract
     {
         switch ($lang) {
             case "ru":
-                $description = "Предоставляет базовое тестовое приложение.";
+                $description = "Предоставляет базовое тестовое приложение по использованию таблици.";
                 break;
             default:
                 $description = "Does not exist.";
@@ -71,8 +69,8 @@ class TestHelloWorldInstaller extends InstallerAbstract
     {
         $config = $this->container->get('config');
         return (
-            isset($config['dependencies']['invokables'][HelloAction::class]) &&
-            isset($config[ActionRenderAbstractFactory::KEY]['home-service'])
+            isset($config['dependencies']['invokables'][CrudAction::class]) &&
+            isset($config[ActionRenderAbstractFactory::KEY]['crud-service'])
         );
     }
 
