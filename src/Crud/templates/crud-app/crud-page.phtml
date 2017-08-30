@@ -1,0 +1,15 @@
+<?php
+$this->headTitle($this->title ?: $this->url);
+$this->lsb($this->lsb)
+    ->addItem('lsb item 1 from template')
+    ->addItem('lsb item 2 from template')
+    ->addItem('lsb item 3 from template');
+
+$this->mainMenu($this->main_menu)
+    ->addItem('menu item 1 from template')
+
+?>
+
+<h1 class="page-header"><?= $this->title ?></h1>
+
+<?= $this->crudTable($this->main_table['url'], $this->main_table['title'], $this->main_table['options']) ?>
