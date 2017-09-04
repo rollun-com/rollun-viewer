@@ -34,6 +34,9 @@ if($container->has('home-service')){
 if($container->has('api-datastore')){
     $app->route('/api/datastore[/{resourceName}[/{id}]]','api-datastore',['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],'api-datastore');
 }
+if($container->has('api-datamanager')){
+    $app->route('/api/datamanager/{operations}/{dataStore}/{serializer}','api-datamanager',['GET', 'POST'],'api-datamanager');
+}
 if($container->has('webhookActionRender')){
     $app->route('/webhook[/{resourceName}]','webhookActionRender',['GET', 'POST'],'webhook');
 }

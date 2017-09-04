@@ -3,34 +3,39 @@
  * Created by PhpStorm.
  * User: root
  * Date: 28.08.17
- * Time: 18:33
+ * Time: 18:36
  */
 
-namespace rollun\dataFormat\Factory;
+namespace rollun\DataManager\Serializer\Adapter\Factory;
 
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
-use rollun\dataFormat\DataStoreImportExport;
-use RuntimeException;
+use rollun\DataManager\Serializer\Adapter\CsvAdapter;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\AbstractFactoryInterface;
 
-class DataStoreImportExportAbstractFactory implements AbstractFactoryInterface
+class CsvAdapterAbstractFactory implements AbstractFactoryInterface
 {
-    const KEY = "DataStoreImportExportServices";
 
-    const KEY_DATASTORE = "keyDataStoreService";
+    const KEY = "CsvAdapterAbstractServices";
 
-    const KEY_DATA_CONVERTER = "keyDataConverterService";
+    const KEY_DELIMITER = "keyDelimiter";
+    const KEY_QUOTATION = "keyQuotation";
+    const KEY_NEW_LINE_SEPARATOR = "keyNewLineSeparator";
+
+    const DEFAULT_DELIMITER = ",";
+    const DEFAULT_QUOTATION = "\"";
+    const DEFAULT_NEW_LINE_SEPARATOR = "\n";
 
     /**
      * Can the factory create an instance for the service?
      * [
-     *      'DataStoreImportExportServices' => [
-     *          "userDataStoreImportExport" => [
-     *              "keyDataStoreService" => "userDataStore",
-     *              "keyDataConverterService" => "csvConverter",
+     *      'CsvAdapterAbstractServices' => [
+     *          "csvAdapter" => [
+     *              "keyDelimiter" => ",",
+     *              "keyQuotation" => "\"",
+     *              "keyNewLineSeparator" => "\n",
      *          ]
      *      ]
      * ]
@@ -64,14 +69,12 @@ class DataStoreImportExportAbstractFactory implements AbstractFactoryInterface
         } else {
             $serviceConfig = $options;
         }
-        if (!$container->has($serviceConfig[static::KEY_DATASTORE])) {
-            throw new ServiceNotFoundException("Service " . $serviceConfig[static::KEY_DATASTORE] . " not found.");
-        }
-        $dataStore = $container->get($serviceConfig[static::KEY_DATASTORE]);
-        if (!$container->has($serviceConfig[static::KEY_DATA_CONVERTER])) {
-            throw new ServiceNotFoundException("Service " . $serviceConfig[static::KEY_DATA_CONVERTER] . " not found.");
-        }
-        $dataConverter = $container->get($serviceConfig[static::KEY_DATA_CONVERTER]);
-        return new DataStoreImportExport($dataStore, $dataConverter);
+        $delimiter = isset($serviceConfig[static::KEY_DELIMITER])
+            ? $serviceConfig[static::KEY_DELIMITER] : static::DEFAULT_DELIMITER;
+        $quotation = isset($serviceConfig[static::KEY_QUOTATION])
+            ? $serviceConfig[static::KEY_QUOTATION] : static::DEFAULT_QUOTATION;
+        $newLineSeparator = isset($serviceConfig[static::KEY_NEW_LINE_SEPARATOR])
+            ? $serviceConfig[static::KEY_NEW_LINE_SEPARATOR] : static::DEFAULT_NEW_LINE_SEPARATOR;
+        return new CsvAdapter($delimiter, $quotation, $newLineSeparator);
     }
 }

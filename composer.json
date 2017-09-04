@@ -36,7 +36,8 @@
     "rollun-com/rollun-api": "^3.0",
     "zendframework/zend-http": "^2.5",
     "rollun-com/rollun-permission": "^2.0",
-    "zendframework/zend-i18n": "^2.7"
+    "zendframework/zend-i18n": "^2.7",
+    "zendframework/zend-serializer": "^2.8"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7.15",
@@ -47,7 +48,8 @@
   },
   "autoload": {
     "psr-4": {
-      "rollun\\test\\": "src/Test/src"
+      "rollun\\Crud\\": "src/Crud/src",
+      "rollun\\DataManager\\": "src/DataManager/src"
     }
   },
   "autoload-dev": {
