@@ -15,18 +15,16 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\AbstractFactoryInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class DataManagerMiddlewareAbstractFactory implements AbstractFactoryInterface
+class ExporterFileRenderAbstractFactory implements AbstractFactoryInterface
 {
     const KEY = "keyDataManagerServices";
-    const KEY_DATASTORE = "keyDataStore";
     const KEY_SERIALIZER = "keySerializer";
     const KEY_CLASS = "class";
 
     /**
      * Create an object
      *  [
-     *      "class" => ImporterMiddleware::class,
-     *      "keyDataStore" => "userDataStore",
+     *      "class" => ExporterMiddleware::class,
      *      "keySerializer" => "csvAdapter",
      *  ]
      * @param  ContainerInterface $container
@@ -47,23 +45,15 @@ class DataManagerMiddlewareAbstractFactory implements AbstractFactoryInterface
             $serviceConfig = $options;
         }
 
-        if (!isset($serviceConfig[static::KEY_DATASTORE])) {
-            throw new ServiceNotFoundException("Not set dataStore.");
-        }
-        if (!$container->has($serviceConfig[static::KEY_DATASTORE])) {
-            throw new ServiceNotFoundException("Not found dataStore " . $serviceConfig[static::KEY_DATASTORE]);
-        }
-
         if (!isset($serviceConfig[static::KEY_SERIALIZER])) {
             throw new ServiceNotFoundException("Not set serializer.");
         }
         if (!$container->has($serviceConfig[static::KEY_SERIALIZER])) {
             throw new ServiceNotFoundException("Not found serializer " . $serviceConfig[static::KEY_SERIALIZER]);
         }
-        $dataStore = $container->get($serviceConfig[static::KEY_DATASTORE]);
         $serializer = $container->get($serviceConfig[static::KEY_SERIALIZER]);
         $class = $serviceConfig[static::KEY_CLASS];
-        return new $class($dataStore, $serializer);
+        return new $class($serializer);
     }
 
     /**

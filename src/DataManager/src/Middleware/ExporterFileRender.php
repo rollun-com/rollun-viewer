@@ -9,14 +9,28 @@
 namespace rollun\DataManager\Middleware;
 
 use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Xiag\Rql\Parser\Query;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\Stream;
+use Zend\Serializer\Adapter\AdapterInterface;
 
-class ExporterMiddleware extends AbstractDataManagerMiddleware
+class ExporterFileRender implements MiddlewareInterface
 {
+
+    /** @var AdapterInterface */
+    protected $serializer;
+
+    /**
+     * ExporterMiddleware constructor.
+     * @param AdapterInterface $serializer
+     */
+    public function __construct(AdapterInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
 
     /**
      * Process an incoming server request and return a response, optionally delegating
@@ -29,10 +43,8 @@ class ExporterMiddleware extends AbstractDataManagerMiddleware
      */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        $result = $this->dataStore->query(new Query());
-        $data = $this->serializer->serialize($result);
-        $type = $this->serializer->getSerializationType();
-        file_put_contents('php://memory', $data);
+        $responseData= $request->getAttribute('responseData');
+        $data = $this->serializer->serialize($responseData);
         $response = new Response(
             'php://memory',
             200,
@@ -43,9 +55,12 @@ class ExporterMiddleware extends AbstractDataManagerMiddleware
                 "Content-Transfer-Encoding" => "binary",
                 "Content-Description" => "File Transfer",
                 "Pragma" => "public",
-                "Content-Disposition" => "attachment; filename=ExportedDataStore.$type"
+                "Content-Disposition" => "attachment; filename=ExportedDataStore.csv"
             ]
         );
+        $response->getBody()->write($data);
+        $request = $request->withAttribute(ResponseInterface::class, $response);
+        $response = $delegate->process($request);
         return $response;
     }
 }

@@ -9,10 +9,9 @@
 namespace rollun\DataManager\Serializer\Adapter;
 
 use DateTime;
-use rollun\DataManager\Interfaces\DataSerializerInterfaces;
 use Zend\Serializer\Adapter\AdapterInterface;
 
-class CsvAdapter implements DataSerializerInterfaces
+class CsvAdapter implements AdapterInterface
 {
     /**
      * @var string
