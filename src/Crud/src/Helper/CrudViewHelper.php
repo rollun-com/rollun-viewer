@@ -45,7 +45,7 @@ class CrudViewHelper extends AbstractHelper
 			$view->bootstrap();
 
 			$view->inlineScript()
-				->appendScript("dojoConfig = {async: true,isDebug: true,packages: [{name: 'dstore', location: '/assets/js/dojo-dstore/'}, {name: 'rql',location: '/assets/js/rql/'}]};");
+				->appendScript("dojoConfig = {async: true,isDebug: true,packages: [{name: 'dstore', location: '/assets/js/dojo-dstore/'}, {name: 'rql',location: '/assets/js/rollun-rql/'}]};");
 
 			$view->inlineScript()
 				->appendFile("/assets/js/dojo/dojo.js")
