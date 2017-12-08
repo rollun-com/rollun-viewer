@@ -3,6 +3,7 @@
 namespace rollun\Crud;
 
 use rollun\Crud\Helper;
+use rollun\Crud\Helper\Factory\RootPageHelperFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -57,11 +58,13 @@ class ConfigProvider
 				'crudTable' => Helper\CrudViewHelper::class,
 				'bootstrap' => Helper\BootstrapHelper::class,
 				'lsb' => Helper\LeftSideBarHelper::class,
+				'rootPage' => Helper\RootPageHelper::class,
 				'mainMenu' => Helper\MainMenuHelper::class
 			],
 			'invokables' => [],
 			'factories' => [
-				Helper\CrudViewHelper::class => InvokableFactory::class,
+                Helper\RootPageHelper::class => RootPageHelperFactory::class,
+                Helper\CrudViewHelper::class => InvokableFactory::class,
 				Helper\BootstrapHelper::class => InvokableFactory::class,
 				Helper\LeftSideBarHelper::class => InvokableFactory::class,
 				Helper\MainMenuHelper::class => InvokableFactory::class
