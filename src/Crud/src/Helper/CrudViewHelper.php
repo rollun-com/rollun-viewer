@@ -25,7 +25,7 @@ class CrudViewHelper extends AbstractHelper
 		$crud_uid = isset($options['crud_uid']) ? $options['crud_uid'] : 'crud_' . rand(1, 10000);
 		$options = json_encode($options);
 		$this->assets($crud_uid);
-		return "<div id='{$crud_uid}'>\n<w-crud-app title='{$title}' url='{$url}' options='{$options}'>\n</w-crud-app>\n</div>";
+		return "<div id='{$crud_uid}'>\n<w-crud-app ref='crud' title='{$title}' url='{$url}' options='{$options}'>\n</w-crud-app>\n</div>";
 	}
 
 	/**
@@ -53,6 +53,6 @@ class CrudViewHelper extends AbstractHelper
 			static::$_initialized = true;
 		}
 		$view->inlineScript()
-			->appendScript("$(function () {require(['dojo/_base/declare','dstore/Rest','dstore/extensions/RqlQuery','rql/query'], function (declare, Rest, RqlQuery, query) {window.RqlStore = declare([Rest, RqlQuery]);Query = query.Query;RollunJs.app({el: '#{$crud_uid}'});});});");
+			->appendScript("$(function () {require(['dojo/_base/declare','dstore/Rest','dstore/extensions/RqlQuery','rql/query'], function (declare, Rest, RqlQuery, query) {window.RqlStore = declare([Rest, RqlQuery]);Query = query.Query;app = RollunJs.app({el: '#{$crud_uid}'});});});");
 	}
 }
