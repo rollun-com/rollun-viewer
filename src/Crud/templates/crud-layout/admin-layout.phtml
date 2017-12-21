@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+    <?php $this->bootstrap(); ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<?= $this->headTitle('zend-expressive')->setSeparator(' - ')->setAutoEscape(false) ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -84,7 +85,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">rollun</a>
+			<a class="navbar-brand" href="<?php echo $this->rootPage(); ?>">rollun</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<?= $this->mainMenu(); ?>
