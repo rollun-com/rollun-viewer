@@ -26,7 +26,9 @@ class ImporterViewHelper extends AbstractHelper
         $placeholderText = (isset($options["placeholderText"]) ? $options["placeholderText"] : "Enter new items here");
 
         $view = $this->getView();
+        $view->bootstrap();
         $view->inlineScript()->appendScript("$(function () {importerApp = RollunJs.app({el: '#crud_importer'});});");
+
         return "<div id=\"crud_importer\">
                     <w-crud-import
                         importfields='{$importFields}' 
