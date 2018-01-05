@@ -6,7 +6,7 @@
  * Time: 15:32
  */
 
-namespace rollun\amazonItemSearch\visual;
+namespace rollun\Crud\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 
