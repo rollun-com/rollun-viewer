@@ -18,9 +18,12 @@ class BootstrapHelper extends AbstractHelper
 		$view = $this->getView();
 
 		if (!static::$_initialized) {
+
 			$view->headLink()
 				->appendStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
+            $view->inlineScript()
+                ->appendFile("https://code.jquery.com/jquery-2.1.4.min.js");
 			$view->inlineScript()
 				->appendFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
