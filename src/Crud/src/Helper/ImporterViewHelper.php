@@ -19,10 +19,12 @@ class ImporterViewHelper extends AbstractHelper
     function __invoke($options)
     {
         $importFields = (isset($options["importFields"]) ? json_encode($options["importFields"]) : json_encode(null));
-        $noIdMode = (isset($options["noId"]) ? $options["noId"] : '0');
+        $noIdMode = (isset($options["noId"]) ? json_encode($options["noId"]) : json_encode(false));
+        $inputSeparator = (isset($options["inputSeparator"]) ? $options["inputSeparator"] : "   ");
         $popupButtonLabel = (isset($options["popupButtonLabel"]) ? $options["popupButtonLabel"] : "Add items");
         $popupTitle = (isset($options["popupTitle"]) ? $options["popupTitle"] : "Add new items");
         $placeholderText = (isset($options["placeholderText"]) ? $options["placeholderText"] : "Enter new items here");
+
         $view = $this->getView();
         $view->inlineScript()->appendScript("$(function () {importerApp = RollunJs.app({el: '#crud_importer'});});");
         return "<div id=\"crud_importer\">
@@ -30,6 +32,7 @@ class ImporterViewHelper extends AbstractHelper
                         importfields='{$importFields}' 
                         label='{$popupButtonLabel}' 
                         noid='{$noIdMode}' 
+                        inputSeparator='{$inputSeparator}'
                         popuptitle='{$popupTitle}' 
                         placeholder='{$placeholderText}'></w-crud-import>
                 </div>";
