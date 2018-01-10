@@ -57,6 +57,7 @@ class ConfigProvider
 		return [
 			'aliases' => [
 				'crudTable' => Helper\CrudViewHelper::class,
+                'advCrudTable' => Helper\AdvCrudViewHelper::class,
 				'bootstrap' => Helper\BootstrapHelper::class,
 				'lsb' => Helper\LeftSideBarHelper::class,
 				'rootPage' => Helper\RootPageHelper::class,
@@ -67,7 +68,8 @@ class ConfigProvider
 			'factories' => [
                 Helper\RootPageHelper::class => RootPageHelperFactory::class,
                 Helper\CrudViewHelper::class => InvokableFactory::class,
-				Helper\BootstrapHelper::class => InvokableFactory::class,
+                Helper\AdvCrudViewHelper::class => InvokableFactory::class,
+                Helper\BootstrapHelper::class => InvokableFactory::class,
 				Helper\LeftSideBarHelper::class => InvokableFactory::class,
 				Helper\MainMenuHelper::class => InvokableFactory::class,
                 ImporterViewHelper::class => InvokableFactory::class

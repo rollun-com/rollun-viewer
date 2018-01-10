@@ -20,17 +20,14 @@ class CrudViewHelper extends AbstractHelper
 	 * @param array $options
 	 * @return string
 	 */
-	public function __invoke($url, $title = null, array $options = [])
+	public function __invoke($url, $title = null, array $options = ["foo" => "bar"])
 	{
 		$crud_uid = isset($options['crud_uid']) ? $options['crud_uid'] : 'crud_' . rand(1, 10000);
 		$options = json_encode($options);
 		$this->assets($crud_uid);
-		return "<div id='{$crud_uid}'>\n<w-crud-app ref='crud' title='{$title}' url='{$url}' options='{$options}'>\n</w-crud-app>\n</div>";
+		return "<div id='{$crud_uid}'>\n<w-crud-app ref='crud' title='{$title}' url='{$url}'  v-bind:options=$options>\n</w-crud-app>\n</div>";
 	}
 
-	/**
-	 *
-	 */
 	public function assets($crud_uid)
 	{
 		$view = $this->getView();
