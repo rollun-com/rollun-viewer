@@ -20,7 +20,7 @@ class ImporterViewHelper extends AbstractHelper
     {
         $importFields = (isset($options["importFields"]) ? json_encode($options["importFields"]) : json_encode(null));
         $noIdMode = (isset($options["noId"]) ? json_encode($options["noId"]) : json_encode(false));
-        $inputSeparator = (isset($options["inputSeparator"]) ? $options["inputSeparator"] : "   ");
+        $inputSeparator = (isset($options["inputSeparator"]) ? $options["inputSeparator"] : "\t");
         $popupButtonLabel = (isset($options["popupButtonLabel"]) ? $options["popupButtonLabel"] : "Add items");
         $popupTitle = (isset($options["popupTitle"]) ? $options["popupTitle"] : "Add new items");
         $placeholderText = (isset($options["placeholderText"]) ? $options["placeholderText"] : "Enter new items here");
