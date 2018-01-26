@@ -14,9 +14,11 @@
       "email": "it.proffesor02@gmail.com"
     }
   ],
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "public/assets/js"
+  "config": {
+    "fxp-asset": {
+      "installer-paths": {
+        "npm-asset-library": "public/assets/js"
+      }
     }
   },
   "require": {
