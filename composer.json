@@ -39,7 +39,6 @@
     "rollun-com/rollun-datastore": "^4.0",
     "zendframework/zend-http": "^2.5",
     "zendframework/zend-i18n": "^2.7",
-    "npm-asset/dojo-rql": "0.x",
     "npm-asset/rollun-js": "0.x",
     "http-interop/http-middleware": "0.4.1"
   },
