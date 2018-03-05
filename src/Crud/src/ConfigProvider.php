@@ -3,8 +3,10 @@
 namespace rollun\Crud;
 
 use rollun\Crud\Helper;
+use rollun\Crud\Helper\Factory\JSInitHelperFactory;
 use rollun\Crud\Helper\Factory\RootPageHelperFactory;
 use rollun\Crud\Helper\ImporterViewHelper;
+use rollun\Crud\Helper\JSInitHelper;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -63,6 +65,7 @@ class ConfigProvider
 				'rootPage' => Helper\RootPageHelper::class,
 				'mainMenu' => Helper\MainMenuHelper::class,
                 'importer' => ImporterViewHelper::class,
+                'jsInit' => JSInitHelper::class,
 			],
 			'invokables' => [],
 			'factories' => [
@@ -72,7 +75,8 @@ class ConfigProvider
                 Helper\BootstrapHelper::class => InvokableFactory::class,
 				Helper\LeftSideBarHelper::class => InvokableFactory::class,
 				Helper\MainMenuHelper::class => InvokableFactory::class,
-                ImporterViewHelper::class => InvokableFactory::class
+                ImporterViewHelper::class => InvokableFactory::class,
+                JSInitHelper::class => JSInitHelperFactory::class,
 			],
 			'abstract_factories' => [],
 		];
