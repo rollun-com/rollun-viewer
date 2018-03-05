@@ -31,7 +31,7 @@ class ImporterViewHelper extends AbstractHelper
 
         $view = $this->getView();
         $view->bootstrap();
-        $view->inlineScript()->appendScript("$(function () {importerApp = RollunJs.app({el: '#crud_importer'});});");
+        $view->jsInit();
 
         return "<div id=\"crud_importer\">
                     <w-crud-import
