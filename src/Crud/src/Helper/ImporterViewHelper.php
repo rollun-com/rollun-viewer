@@ -25,7 +25,7 @@ class ImporterViewHelper extends AbstractHelper
         $popupTitle = (isset($options["popupTitle"]) ? $options["popupTitle"] : "Add new items");
         $placeholderText = (isset($options["placeholderText"]) ? $options["placeholderText"] : "Enter new items here");
         $formName = (isset($options["formName"]) ? $options["formName"] : 'file2ds');
-        $uploadUrl = json_encode($options["uploadUrl"]);
+        $uploadUrl = (isset($options["uploadUrl"]) ? $options["uploadUrl"] : '');
         $uploadAccept = (isset($options["uploadAccept"]) ? json_encode($options["uploadAccept"]) : '.csv');
         $uploadHeaders = (isset($options["uploadHeaders"]) ? json_encode($options["uploadHeaders"]) : '');
 
