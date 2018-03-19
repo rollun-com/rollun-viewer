@@ -14,9 +14,11 @@
       "email": "it.proffesor02@gmail.com"
     }
   ],
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "public/assets/js"
+  "config": {
+    "fxp-asset": {
+      "installer-paths": {
+        "npm-asset-library": "public/assets/js"
+      }
     }
   },
   "require": {
@@ -37,7 +39,7 @@
     "rollun-com/rollun-datastore": "^4.0",
     "zendframework/zend-http": "^2.5",
     "zendframework/zend-i18n": "^2.7",
-    "npm-asset/rollun-js": "^0.0.7",
+    "npm-asset/rollun-js": "0.x",
     "http-interop/http-middleware": "0.4.1"
   },
   "require-dev": {
