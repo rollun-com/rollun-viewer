@@ -6,7 +6,7 @@
  * Time: 18:48
  */
 
-namespace rollun\app;
+namespace rollun\Crud\Helper;
 
 
 use Zend\View\Helper\AbstractHelper;
