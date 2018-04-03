@@ -29,6 +29,7 @@ class ImporterViewHelper extends AbstractHelper
         $uploadAccept = (isset($options["uploadAccept"]) ? json_encode($options["uploadAccept"]) : '.csv');
         $uploadHeaders = (isset($options["uploadHeaders"]) ? json_encode($options["uploadHeaders"]) : '');
         $validatorName = (isset($options["validatorName"]) ? $options["validatorName"] : "");
+        $hasHeaderLine = (isset($options["hasHeaderLine"]) ? json_encode($options["hasHeaderLine"]) : json_encode(false));
 
         $view = $this->getView();
         $view->bootstrap();
@@ -46,7 +47,8 @@ class ImporterViewHelper extends AbstractHelper
                         uploadurl='$uploadUrl'
                         uploadaccept='$uploadAccept'
                         uploadheaders='$uploadHeaders'
-                        validatorname='$validatorName'>
+                        validatorname='$validatorName'
+                        hasheaderline='$hasHeaderLine'>
                     </w-crud-import>
                 </div>";
     }
