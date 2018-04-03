@@ -6,7 +6,7 @@
  * Time: 18:48
  */
 
-namespace rollun\Crud\Helper;
+namespace rollun\app;
 
 
 use Zend\View\Helper\AbstractHelper;
@@ -32,6 +32,8 @@ class RgridHelper extends AbstractHelper
                              win,
                              AdvDatastoreViewer,
                              Memory) {
+                    
+                    /*domClass.add(win.body(), \"claro\");*/
                     domClass.add(win.body(), \"flat\");
                     var myFilterStore = new Memory();
                     var dataStoreViewer = new AdvDatastoreViewer({url: '$url', gridConfig: {filterStore: myFilterStore}});
@@ -69,7 +71,7 @@ class RgridHelper extends AbstractHelper
                 packages: [
                     {
                         name: \"Rscript\",
-                        location: '../dojo-rql/lib'
+                        location: '../rgrid/lib'
                     },
                     {
                         name: \"dstore\",
