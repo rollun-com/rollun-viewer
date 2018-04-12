@@ -28,7 +28,7 @@ class JSInitHelper extends AbstractHelper
     public function __invoke()
     {
         $view = $this->getView();
-        if (!static::$_initialized) {//TODO: get Vue to load from cdn
+        if (!static::$_initialized) {
             $stringIsDebug = 'true';
             if ($this->isDebug = false) {
                 $stringIsDebug = 'false';
@@ -36,11 +36,25 @@ class JSInitHelper extends AbstractHelper
             $view->bootstrap();
 
             $view->inlineScript()
-                ->appendScript("dojoConfig = {async: true,isDebug: $stringIsDebug,packages: [{name: 'dstore', location: '/assets/js/dojo-dstore/'}, {name: 'rql',location: '/assets/js/rollun-rql/'}]};");
+                ->appendScript("
+                dojoConfig = {
+                    async: true,
+                    isDebug: $stringIsDebug,
+                    packages: [
+                        {
+                            name: 'dstore', 
+                            location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1.1.2/'
+                        },
+                        {
+                            name: 'rql',
+                            location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0/'
+                        }
+                    ]
+                };");
 
             $view->inlineScript()
-                ->appendFile("/assets/js/dojo/dojo.js")
-                ->appendFile("/assets/js/rollun-js/index.js");
+                ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/dojo.js")
+                ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0/index.js");
             $view->inlineScript()
                 ->appendScript("
                 $(function () {
