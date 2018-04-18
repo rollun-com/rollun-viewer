@@ -53,7 +53,7 @@ class JSInitHelper extends AbstractHelper
                 };");
 
             $view->inlineScript()
-                ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11/dojo/dojo.js")
+                ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11.0/dojo/dojo.js")
                 ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0/index.js");
             $view->inlineScript()
                 ->appendScript("
