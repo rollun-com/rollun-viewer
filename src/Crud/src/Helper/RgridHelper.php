@@ -33,7 +33,6 @@ class RgridHelper extends AbstractHelper
                              AdvDatastoreViewer,
                              Memory) {
                     
-                    /*domClass.add(win.body(), \"claro\");*/
                     domClass.add(win.body(), \"flat\");
                     var myFilterStore = new Memory();
                     var dataStoreViewer = new AdvDatastoreViewer({url: '$url', gridConfig: {filterStore: myFilterStore}});
@@ -49,17 +48,17 @@ class RgridHelper extends AbstractHelper
     protected function addDojoStyles($view)
     {
         $view->headLink()
-            ->appendStylesheet('assets/js/dojo/resources/dojo.css')
-            ->appendStylesheet('assets/js/dojo-rql/themes/flat/flat.css')
-            ->appendStylesheet('assets/js/dojox/highlight/resources/highlight.css')
-            ->appendStylesheet('assets/js/dojox/highlight/resources/pygments/colorful.css')
-            ->appendStylesheet('assets/js/dgrid/css/dgrid.css')
-            ->appendStylesheet('assets/js/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css')
-            ->appendStylesheet('assets/js/dojo-rql/lib/FilterEditor/resources/css/FilterEditor.css')
-            ->appendStylesheet('assets/js/dojo-rql/lib/DataStoreViewer/resource/bootstrap/css/bootstrap.css')
-            ->appendStylesheet('assets/js/dojo-rql/lib/DataStoreViewer/resource/bootstrap/css/bootstrap-theme.css')
-            ->appendStylesheet('assets/js/dojo/resources/dnd.css')
-            ->appendStylesheet('assets/js/dojo-rql/lib/DataStoreViewer/resource/bootstrap/css/dashboard.css');
+            ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/resources/dojo.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/themes/flat/flat.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/highlight/resources/highlight.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/highlight/resources/pygments/colorful.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dgrid@1/css/dgrid.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/grid/enhanced/resources/EnhancedGrid_rtl.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/FilterEditor/resources/css/FilterEditor.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/bootstrap.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/bootstrap-theme.css')
+            ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/resources/dnd.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/dashboard.css');
     }
 
     protected function addDojo($view)
@@ -71,35 +70,35 @@ class RgridHelper extends AbstractHelper
                 packages: [
                     {
                         name: \"Rscript\",
-                        location: '../rgrid/lib'
+                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0/lib'
                     },
                     {
                         name: \"dstore\",
-                        location: '../dojo-dstore'
+                        location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1'
                     }, 
                     {
                         name: \"dgrid\",
-                        location: '../dgrid'
+                        location: 'https://cdn.jsdelivr.net/npm/dgrid@1'
                     }, 
                     {
                         name: \"dijit\",
-                        location: '../dijit'
+                        location: 'https://cdn.jsdelivr.net/npm/dijit@1'
                     }, 
                     {
                         name: \"dojox\",
-                        location: '../dojox'
+                        location: 'https://cdn.jsdelivr.net/npm/dojox@1'
                     }, 
                     {
                         name: \"promised-io\",
-                        location: '../promised-io'
+                        location: 'https://cdn.jsdelivr.net/npm/promised-io@0'
                     }, 
                     {
                         name: \"rql\",
-                        location: '../rollun-rql'
+                        location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0'
                     }
                 ]
             };
         ");
-        $view->inlineScript()->appendFile("/assets/js/dojo/dojo.js");
+        $view->inlineScript()->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/dojo.js");
     }
 }
