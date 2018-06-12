@@ -20,10 +20,14 @@ class CrudViewHelper extends AbstractHelper
 	 * @param array $options
 	 * @return string
 	 */
-	public function __invoke($url, $title = null, array $options = ["foo" => "bar"])
+	public function __invoke($url, $title = null, $options = [])
 	{
 	    $view = $this->getView();
 	    $view->jsInit();
+	    if (count($options) === 0 )
+        {
+            $options["foo"] = "bar";
+        }
 		$options = json_encode($options);
 		return "<w-crud-app ref='crud' title='{$title}' url='{$url}'  v-bind:options=$options>\n</w-crud-app>";
 	}

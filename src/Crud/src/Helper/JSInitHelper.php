@@ -47,14 +47,14 @@ class JSInitHelper extends AbstractHelper
                         },
                         {
                             name: 'rql',
-                            location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0/'
+                            location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0.3/'
                         }
                     ]
                 };");
 
             $view->inlineScript()
-                ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11/dojo/dojo.js")
-                ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0/index.js");
+                ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/dojo.js")
+                ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0.0/index.js");
             $view->inlineScript()
                 ->appendScript("
                 $(function () {
