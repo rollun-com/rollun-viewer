@@ -43,18 +43,18 @@ class JSInitHelper extends AbstractHelper
                     packages: [
                         {
                             name: 'dstore', 
-                            location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1.1/'
+                            location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1.x/'
                         },
                         {
                             name: 'rql',
-                            location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0.3/'
+                            location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0.x/'
                         }
                     ]
                 };");
 
             $view->inlineScript()
                 ->appendFile("https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/dojo.js")
-                ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0.0/index.js");
+                ->appendFile("https://cdn.jsdelivr.net/npm/rollun-js@0.x/index.js");
             $view->inlineScript()
                 ->appendScript("
                 $(function () {

@@ -49,16 +49,16 @@ class RgridHelper extends AbstractHelper
     {
         $view->headLink()
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/resources/dojo.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/themes/flat/flat.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/highlight/resources/highlight.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/highlight/resources/pygments/colorful.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dgrid@1/css/dgrid.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1/grid/enhanced/resources/EnhancedGrid_rtl.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/FilterEditor/resources/css/FilterEditor.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/bootstrap.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/bootstrap-theme.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.0.x/themes/flat/flat.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/highlight.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/pygments/colorful.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dgrid@1.x/css/dgrid.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/grid/enhanced/resources/EnhancedGrid_rtl.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.0.x/lib/FilterEditor/resources/css/FilterEditor.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.0.x/lib/DataStoreViewer/resource/bootstrap/css/bootstrap.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.0.x/lib/DataStoreViewer/resource/bootstrap/css/bootstrap-theme.css')
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.2/dojo/resources/dnd.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/DataStoreViewer/resource/bootstrap/css/dashboard.css');
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.0.x/lib/DataStoreViewer/resource/bootstrap/css/dashboard.css');
     }
 
     protected function addDojo($view)
@@ -70,31 +70,31 @@ class RgridHelper extends AbstractHelper
                 packages: [
                     {
                         name: \"Rscript\",
-                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0/lib'
+                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0.0.x/lib'
                     },
                     {
                         name: \"dstore\",
-                        location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1'
+                        location: 'https://cdn.jsdelivr.net/npm/dojo-dstore@1.x'
                     }, 
                     {
                         name: \"dgrid\",
-                        location: 'https://cdn.jsdelivr.net/npm/dgrid@1'
+                        location: 'https://cdn.jsdelivr.net/npm/dgrid@1.x'
                     }, 
                     {
                         name: \"dijit\",
-                        location: 'https://cdn.jsdelivr.net/npm/dijit@1'
+                        location: 'https://cdn.jsdelivr.net/npm/dijit@1.x'
                     }, 
                     {
                         name: \"dojox\",
-                        location: 'https://cdn.jsdelivr.net/npm/dojox@1'
+                        location: 'https://cdn.jsdelivr.net/npm/dojox@1.x'
                     }, 
                     {
                         name: \"promised-io\",
-                        location: 'https://cdn.jsdelivr.net/npm/promised-io@0'
+                        location: 'https://cdn.jsdelivr.net/npm/promised-io@0.x'
                     }, 
                     {
                         name: \"rql\",
-                        location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0'
+                        location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0.x'
                     }
                 ]
             };
