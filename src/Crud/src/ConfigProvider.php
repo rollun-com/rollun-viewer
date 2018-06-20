@@ -8,7 +8,11 @@ use rollun\Crud\Helper\Factory\RootPageHelperFactory;
 use rollun\Crud\Helper\ImporterViewHelper;
 use rollun\Crud\Helper\JSInitHelper;
 use rollun\Crud\Helper\RgridHelper;
+use Zend\Expressive\Template\TemplateRendererInterface;
+use Zend\Expressive\ZendView\HelperPluginManagerFactory;
+use Zend\Expressive\ZendView\ZendViewRendererFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\View\HelperPluginManager;
 
 /**
  * The configuration provider for the App module
@@ -28,6 +32,7 @@ class ConfigProvider
     public function __invoke()
     {
         return [
+            'dependencies' => $this->getDependencies(),
             'templates' => $this->getTemplates(),
             'view_helpers' => $this->getViewHelpers(),
         ];
@@ -82,6 +87,16 @@ class ConfigProvider
                 RgridHelper::class => InvokableFactory::class,
             ],
             'abstract_factories' => [],
+        ];
+    }
+
+    public function getDependencies()
+    {
+        return [
+            'factories' => [
+                TemplateRendererInterface::class => ZendViewRendererFactory::class,
+                HelperPluginManager::class => HelperPluginManagerFactory::class,
+            ],
         ];
     }
 }
