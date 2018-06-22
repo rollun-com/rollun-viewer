@@ -83,9 +83,9 @@ class RgridHelper extends AbstractHelper
         $view->headLink()
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/resources/dojo.css')
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/resources/dnd.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.x/themes/flat/flat.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.x/lib/css/rgrid.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0.x/lib/css/ConditionEditor.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/themes/flat/flat.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/css/rgrid.css')
+            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/css/ConditionEditor.css')
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/highlight.css')
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/pygments/colorful.css')
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dgrid@1.x/css/dgrid.css');
@@ -100,7 +100,7 @@ class RgridHelper extends AbstractHelper
                 packages: [
                     {
                         name: 'rgrid',
-                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0.x/lib'
+                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0/lib'
                     },
                     {
                         name: 'dstore',
