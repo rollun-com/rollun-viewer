@@ -8,17 +8,17 @@
 
 namespace rollun\Crud\Helper;
 
-
 use Zend\View\Helper\AbstractHelper;
 
 class RgridHelper extends AbstractHelper
 {
-    public function __invoke($url)
+    public function __invoke($params)
     {
         $view = $this->getView();
         $view->bootstrap();
         $this->addDojo($view);
         $this->addDojoStyles($view);
+        $paramsString = json_encode($params);
         $dataViewerHtml = "
             <script>
                 require(
@@ -52,7 +52,7 @@ class RgridHelper extends AbstractHelper
                         domClass.add(win.body(), 'flat');
                         const factory = new WidgetFactory(),
                         placer = new WidgetPlacer(),
-                        configStore = new Memory({data: [{id: 'gridTarget', url: \"$url\"}]}),
+                        configStore = new Memory({data: JSON.parse('$paramsString')}),
                         composite = new RComposite({
                             widgetFactory: factory, 
                             widgetPlacer: placer, 
