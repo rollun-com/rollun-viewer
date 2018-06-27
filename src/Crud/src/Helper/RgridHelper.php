@@ -12,7 +12,9 @@ use Zend\View\Helper\AbstractHelper;
 
 class RgridHelper extends AbstractHelper
 {
-    public function __invoke($params)
+    protected $rgridVersion = '0.4';
+
+    public function __invoke($params, $startPage = null)
     {
         $view = $this->getView();
         $view->bootstrap();
@@ -34,7 +36,8 @@ class RgridHelper extends AbstractHelper
                         'rgrid/prefabs/Rgrid',
                         'rgrid/prefabs/Search',
                         'dstore/Memory',
-                        'dojo/text!rgrid/testTemplate.html'
+                        'dojo/text!rgrid-examples/testTemplate.html',
+                        'config/RgridConfig'
                     ], function (
                         dom,
                         domClass,
@@ -47,12 +50,15 @@ class RgridHelper extends AbstractHelper
                         RgridPrefab,
                         SearchPrefab,
                         Memory,
-                        template                   
+                        template,
+                        config                   
                         ) {
                         domClass.add(win.body(), 'flat');
                         const factory = new WidgetFactory(),
                         placer = new WidgetPlacer(),
-                        configStore = new Memory({data: JSON.parse('$paramsString')}),
+                        parsedParams = JSON.parse('$paramsString');
+                        config.push(...parsedParams);
+                        const configStore = new Memory({data: config}),
                         composite = new RComposite({
                             widgetFactory: factory, 
                             widgetPlacer: placer, 
@@ -62,7 +68,7 @@ class RgridHelper extends AbstractHelper
                         prefabs = [
                         	new RgridPrefab(),
                         	new ConditionsInMenu(),
-                        	new PaginationPrefab(),
+                        	new PaginationPrefab({startingPage: '$startPage'}),
                         	new SearchPrefab()
                         	];
                         composite.addComponents(prefabs);
@@ -72,7 +78,7 @@ class RgridHelper extends AbstractHelper
 );
                       
             </script>
-            <div id=\"data_store_viewer\"></div>
+            <div id='data_store_viewer'></div>
         ";
 
         return $dataViewerHtml;
@@ -83,9 +89,9 @@ class RgridHelper extends AbstractHelper
         $view->headLink()
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/resources/dojo.css')
             ->appendStylesheet('https://ajax.googleapis.com/ajax/libs/dojo/1.11.1/dojo/resources/dnd.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/themes/flat/flat.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/css/rgrid.css')
-            ->appendStylesheet('https://cdn.jsdelivr.net/npm/rgrid@0/lib/css/ConditionEditor.css')
+            ->appendStylesheet("https://cdn.jsdelivr.net/npm/rgrid@$this->rgridVersion/themes/flat/flat.css")
+            ->appendStylesheet("https://cdn.jsdelivr.net/npm/rgrid@$this->rgridVersion/lib/css/rgrid.css")
+            ->appendStylesheet("https://cdn.jsdelivr.net/npm/rgrid@$this->rgridVersion/lib/css/ConditionEditor.css")
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/highlight.css')
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dojox@1.x/highlight/resources/pygments/colorful.css')
             ->appendStylesheet('https://cdn.jsdelivr.net/npm/dgrid@1.x/css/dgrid.css');
@@ -100,7 +106,15 @@ class RgridHelper extends AbstractHelper
                 packages: [
                     {
                         name: 'rgrid',
-                        location: 'https://cdn.jsdelivr.net/npm/rgrid@0/lib'
+                        location: 'https://cdn.jsdelivr.net/npm/rgrid@$this->rgridVersion/lib'
+                    },
+                    {
+                        name: 'config',
+                        location: `\${window.origin}/`
+                    },
+                    {
+                        name: 'rgrid-examples',
+                        location: 'https://cdn.jsdelivr.net/npm/rgrid@$this->rgridVersion/example'
                     },
                     {
                         name: 'dstore',
@@ -124,7 +138,7 @@ class RgridHelper extends AbstractHelper
                     }, 
                     {
                         name: 'rql',
-                        location: 'https://cdn.jsdelivr.net/npm/rollun-rql@0.x'
+                        location: 'https://cdn.jsdelivr.net/npm/rollun-rql@^0.3'
                     }
                 ]
             };
