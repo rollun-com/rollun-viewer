@@ -11,7 +11,7 @@ namespace rollun\Crud\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
-use rollun\webUI\Helper\NavbarHelper;
+use rollun\Crud\Helper\NavbarHelper;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -34,9 +34,9 @@ class NavbarHelperFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $navbarConfig = $container->get('config')[NavbarHelperFactory::KEY];
-        if (isset($navbarConfig)) {
-            return new NavbarHelper($navbarConfig);
+        $config = $container->get('config');
+        if (isset($config[self::KEY])) {
+            return new NavbarHelper($config[self::KEY]);
         }
         throw new ServiceNotCreatedException('navbar config is missing');
     }

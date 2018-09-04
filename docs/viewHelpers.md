@@ -19,11 +19,86 @@ ViewHelper`ы  в service-web-ui бывают двух видов: просты�
 ## NavbarHelper
 NavbarHelper доступен из view в виде методa addNavbar().
 Настраивается этот хелпер с помощьбю конфига. Конфиг помещается на верхний
-уровень файла конфига с ключом navbar (NavbarHelperFactory::KEY). Конфиг
+уровень файла конфига с ключом `navbar` (NavbarHelperFactory::KEY). Конфиг
 описан [в доке по js компоненту NavMenu](https://github.com/rollun-com/rollun-rgrid/blob/master/docs/modules/NavigationVidgets.md#navmenu)
+Пример конфига:
+```
+ NavbarHelperFactory::KEY => [
+        [
+            'label' => 'Тестовые страницы',
+            'content' => [
+                [
+                    'label' => 'Тестовая главная',
+                    'uri' => '/'
+                ],
+                [
+                    'label' => 'Тестовая таблица',
+                    'uri' => '/example-grid'
+                ],
+            ]
+        ],
+        [
+            'label' => 'pane 2',
+            'content' => [
+                [
+                    'label' => 'service 3',
+                    'uri' => 'service/1/uri'
+                ],
+                [
+                    'label' => 'service 4',
+                    'content' => [
+                        [
+                            'label' => 'subservice 1',
+                            'uri' => 'subservice/1/uri'
+                        ],
+                        [
+                            'label' => 'subservice 2',
+                            'uri' => 'subservice/1/uri'
+                        ],
+                    ]
+                ],
+            ]
+        ],
+    ],
+```
 ## LeftSideBarHelper
  LeftSideBarHelper доступен из view в виде методa addLsb($lsbConfig). lsbConfig
  описан [в доке по js компоненту NavPanes](https://github.com/rollun-com/rollun-rgrid/blob/master/docs/modules/NavigationVidgets.md#navmenu)
+ LsbConfig следует размещать в контролллере страницы, к которой онотносится. Ключ
+ конфига (LeftSideBarHelper::KEY_PARAMS) нужно разместить на верхнем уровне
+ конфига параметров, которые добавляются в шаблон.
+ Пример конфига:
+ ```
+ LeftSideBarHelper::KEY_PARAMS => [
+                     [
+                         'label' => 'pane 1',
+                         'content' => [
+                             [
+                                 'label' => 'page 1',
+                                 'uri' => 'service/1/uri'
+                             ],
+                             [
+                                 'label' => 'page 2',
+                                 'uri' => 'service/2/uri'
+                             ],
+                         ]
+                     ],
+                     [
+                         'label' => 'pane 2',
+                         'content' => [
+                             [
+                                 'label' => 'page 1',
+                                 'uri' => 'service/1/uri'
+                             ],
+                             [
+                                 'label' => 'page 2',
+                                 'uri' => 'service/2/uri'
+                             ],
+                         ]
+                     ],
+                 ],
+ ```
+
 ## ViewHelper Dojo
 Dojo и наш js код можно добавить на страницу с помощью viewhelper`а DojoLoaderViewHelper.
 Этот хелпер доступен из view в виде методa dojo().
