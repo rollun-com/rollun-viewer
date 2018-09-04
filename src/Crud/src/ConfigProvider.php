@@ -52,11 +52,11 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'crud-app' => [__DIR__ . '/../templates/crud-app'],
-                'crud-error' => [__DIR__ . '/../templates/crud-error'],
-                'crud-layout' => [__DIR__ . '/../templates/crud-layout']
+                'crudApp' => [__DIR__ . '/../templates/crudApp'],
+                'crudError' => [__DIR__ . '/../templates/crudError'],
+                'crudLayout' => [__DIR__ . '/../templates/crudLayout']
             ],
-            'layout' => 'crud-layout::august-layout',
+            'layout' => 'crudLayout::august-layout',
         ];
     }
 

@@ -6,7 +6,7 @@
  * Time: 14:08
  */
 
-namespace rollun\webUI\Helper\Factory;
+namespace rollun\Crud\Helper\Factory;
 
 
 use Interop\Container\ContainerInterface;
