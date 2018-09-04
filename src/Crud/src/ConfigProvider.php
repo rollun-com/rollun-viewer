@@ -7,6 +7,11 @@ use rollun\Crud\Helper\Factory\JSInitHelperFactory;
 use rollun\Crud\Helper\Factory\RootPageHelperFactory;
 use rollun\Crud\Helper\ImporterViewHelper;
 use rollun\Crud\Helper\JSInitHelper;
+use rollun\Crud\Helper\DojoLoaderViewHelper;
+use rollun\Crud\Helper\Factory\NavbarHelperFactory;
+use rollun\Crud\Helper\FitScreenHeightHelper;
+use rollun\Crud\Helper\LeftSideBarHelper;
+use rollun\Crud\Helper\NavbarHelper;
 use rollun\Crud\Helper\RgridHelper;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use Zend\Expressive\ZendView\HelperPluginManagerFactory;
@@ -51,7 +56,7 @@ class ConfigProvider
                 'crud-error' => [__DIR__ . '/../templates/crud-error'],
                 'crud-layout' => [__DIR__ . '/../templates/crud-layout']
             ],
-            'layout' => 'crud-layout::admin-layout',
+            'layout' => 'crud-layout::august-layout',
         ];
     }
 
@@ -67,24 +72,29 @@ class ConfigProvider
                 'crudTable' => Helper\CrudViewHelper::class,
                 'advCrudTable' => Helper\AdvCrudViewHelper::class,
                 'bootstrap' => Helper\BootstrapHelper::class,
-                'lsb' => Helper\LeftSideBarHelper::class,
                 'rootPage' => Helper\RootPageHelper::class,
                 'mainMenu' => Helper\MainMenuHelper::class,
                 'importer' => ImporterViewHelper::class,
                 'jsInit' => JSInitHelper::class,
-                'rgrid' => RgridHelper::class,
+                'dojoLoader' => DojoLoaderViewHelper::class,
+                'addLsb' => LeftSideBarHelper::class,
+                'addNavbar' => NavbarHelper::class,
+                'fitScreenHeight' => FitScreenHeightHelper::class,
+                'rgrid' => RgridHelper::class
             ],
-            'invokables' => [],
             'factories' => [
                 Helper\RootPageHelper::class => RootPageHelperFactory::class,
                 Helper\CrudViewHelper::class => InvokableFactory::class,
                 Helper\AdvCrudViewHelper::class => InvokableFactory::class,
                 Helper\BootstrapHelper::class => InvokableFactory::class,
-                Helper\LeftSideBarHelper::class => InvokableFactory::class,
                 Helper\MainMenuHelper::class => InvokableFactory::class,
                 ImporterViewHelper::class => InvokableFactory::class,
                 JSInitHelper::class => JSInitHelperFactory::class,
-                RgridHelper::class => InvokableFactory::class,
+                DojoLoaderViewHelper::class => InvokableFactory::class,
+                LeftSideBarHelper::class => InvokableFactory::class,
+                FitScreenHeightHelper::class => InvokableFactory::class,
+                NavbarHelper::class => NavbarHelperFactory::class,
+                RgridHelper::class => InvokableFactory::class
             ],
             'abstract_factories' => [],
         ];

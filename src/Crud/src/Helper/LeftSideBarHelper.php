@@ -1,50 +1,33 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: USER_T
+ * Date: 06.08.2018
+ * Time: 16:12
+ */
 
 namespace rollun\Crud\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 
-/**
- * Class LeftSideBarHelper
- * @package rollun\Crud\Helper
- */
 class LeftSideBarHelper extends AbstractHelper
 {
+    const KEY_PARAMS = 'lsbParams';
+    /**
+     * @param $lsbConfig {array}
+     */
+    public function __invoke($lsbConfig)
+    {
+        $view = $this->getView();
+        $leftSideBarConfigJson = json_encode($lsbConfig);
+        $script =
+            "require(['dojo/dom','rgrid/NavPanes'], (dom,NavPanes) => {
+                const lsbConfig = JSON.parse('$leftSideBarConfigJson'),
+                navPanes = new NavPanes({layoutConfig: lsbConfig});
+	            navPanes.placeAt(dom.byId('r-nav-list'));
+	        });
+	    ";
+        $view->headScript()->appendScript($script);
 
-	protected static $_items = [];
-
-	/**
-	 * @param null $items
-	 * @return $this
-	 */
-	public function __invoke($items = null)
-	{
-		if (is_array($items))
-			static::$_items = $items;
-		return $this;
-	}
-
-	/**
-	 * @param $title
-	 * @param string $link
-	 * @return $this
-	 */
-	public function addItem($title, $link = '#')
-	{
-		static::$_items[] = [
-			'title' => $title,
-			'link' => $link
-		];
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function __toString()
-	{
-		return "<ul class='nav nav-sidebar'>" . implode('', array_map(function ($item) {
-				return "<li><a href='{$item['link']}'>{$item['title']}</a></li>";
-			}, static::$_items)) . "</ul>";
-	}
+    }
 }
