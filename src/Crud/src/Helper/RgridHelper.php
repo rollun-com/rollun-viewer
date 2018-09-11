@@ -13,7 +13,7 @@ use Zend\View\Helper\AbstractHelper;
 class RgridHelper extends AbstractHelper
 {
 
-    protected $rgridVersion = '0.5.0';
+    protected $rgridVersion = '0.5.4';
     protected $params;
     protected $startPageNumber;
 
@@ -39,64 +39,23 @@ class RgridHelper extends AbstractHelper
         }else {
             $startPage = null;
         }
+        $targetNodeId = 'r-data-grid-'. mt_rand(1,1000);
         $paramsString = json_encode($this->params);
+        $startPageJson = json_encode($startPage);
         $gridScript = "
-            require(
-                [
-                    'dojo/dom',
-                    'dojo/dom-class',
-                    'dojo/_base/window',
-                    'rgrid/Composite/RComposite',
-                    'rgrid/Composite/WidgetFactory',
-                    'rgrid/Composite/TemplateWidgetPlacer',
-                    'rgrid/prefabs/ConditionsInMenu',
-                    'rgrid/prefabs/Pagination',
-                    'rgrid/prefabs/Rgrid',
-                    'rgrid/prefabs/Search',
-                    'dstore/Memory',
-                    'dojo/text!rgrid-examples/testTemplate.html',
-                    'config/RgridConfig'
-                ], function (
-                    dom,
-                    domClass,
-                    win,
-                    RComposite,
-                    WidgetFactory,
-                    WidgetPlacer,
-                    ConditionsInMenu,
-                    PaginationPrefab,
-                    RgridPrefab,
-                    SearchPrefab,
-                    Memory,
-                    template,
-                    config                   
-                    ) {
-                    domClass.add(win.body(), 'flat');
-                    const factory = new WidgetFactory(),
-                    placer = new WidgetPlacer(),
-                    parsedParams = JSON.parse('$paramsString');
-                    config.push(...parsedParams);
-                    const configStore = new Memory({data: config}),
-                    composite = new RComposite({
-                        widgetFactory: factory, 
-                        widgetPlacer: placer, 
-                        configStore: configStore,
-                        templateString: template
-                    }),
-                    prefabs = [
-                    	new RgridPrefab(),
-                    	new ConditionsInMenu(),
-                    	new PaginationPrefab({startingPage: '$startPage'}),
-                    	new SearchPrefab()
-                    	];
-                    composite.addComponents(prefabs);
-                    composite.placeAt(dom.byId('r-data-grid'));
-                    composite.startup();
+            require(['rgrid/RCompositeFactory'], function (RCompositeFactory) {
+               const composite = new RCompositeFactory(
+                    {
+                        configString: '$paramsString',
+                        startPage: $startPageJson,
+                        nodeId: '$targetNodeId'
                     }
-            );       
+               );
+               composite.render()
+            });
         ";
         $view->inlineScript()->appendScript($gridScript);
-        return "<div id='r-data-grid'></div>";
+        return "<div id='$targetNodeId'></div>";
     }
 
     protected function addDojoStyles($view)
