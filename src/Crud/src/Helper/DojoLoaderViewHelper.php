@@ -11,11 +11,12 @@ namespace rollun\Crud\Helper;
 
 use Exception;
 use Zend\View\Helper\AbstractHelper;
+use Zend\View\Renderer\RendererInterface;
 
 class DojoLoaderViewHelper extends AbstractHelper
 {
     protected $isInitialised = false;
-    protected $rgridVersion = '0.5.0';
+    protected $rgridVersion = '0.5.16';
     protected $rollunRqlVersion = '0.3.8';
     protected $debugMode = false;
 
@@ -133,6 +134,8 @@ class DojoLoaderViewHelper extends AbstractHelper
                 'location' => $rgridConfigUrl
             ]
         ]);
+
+        /** @var RendererInterface $view */
         $view = $this->getView();
         $dojoConfigString = $this->generateDojoConfig();
         $view->headScript()->appendScript("var dojoConfig = JSON.parse('$dojoConfigString');");
@@ -151,7 +154,7 @@ class DojoLoaderViewHelper extends AbstractHelper
      */
     protected function getRgridConfigUrl()
     {
-        return "http://$_SERVER[HTTP_HOST]/";
+        return '/';
     }
 
     /**
@@ -160,7 +163,7 @@ class DojoLoaderViewHelper extends AbstractHelper
     protected function generateDojoConfig()
     {
         $packagesJson = $this->generatePackagesJson();
-        $isDebug = $this->debugMode ? "true" : 'false';
+        $isDebug = $this->debugMode ? 'true' : 'false';
         return "{\"async\": true, \"isDebug\": $isDebug, \"packages\": $packagesJson}";
     }
 
