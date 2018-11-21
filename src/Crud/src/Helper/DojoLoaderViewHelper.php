@@ -154,7 +154,7 @@ class DojoLoaderViewHelper extends AbstractHelper
      */
     protected function getRgridConfigUrl()
     {
-        return '/';
+        return "http://$_SERVER[HTTP_HOST]/";
     }
 
     /**
